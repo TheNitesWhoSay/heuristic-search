@@ -6,6 +6,8 @@ set(This TypeaheadSearch)
 
 project(${This})
 
+add_compile_definitions(PREFERRED_WORKING_DIRECTORY="${CMAKE_CURRENT_SOURCE_DIR}")
+
 set(CMAKE_BUILD_PARALLEL_LEVEL)
 set(CMAKE_C_STANDARD 23)
 set(CMAKE_CXX_STANDARD 23)
