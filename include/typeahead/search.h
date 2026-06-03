@@ -621,6 +621,7 @@ namespace search
             const std::vector<std::unordered_map<item_key_type, std::vector<search_match<match_offset>>>> & search_token_matches,
             std::unordered_map<item_key_type, search_result> & search_result_map)
         {
+            search_result_map.reserve(1000);
             score_search_matches(search_tokens, search_token_matches, [&](std::uint64_t match_score, item_key_type item_key, const search_match<match_offset> & match) {
                 if ( match_score > 0 )
                 {
@@ -845,7 +846,7 @@ namespace search
             find_full_search_token_matches(search_tokens, search_token_matches);
             find_partial_search_token_matches(search_tokens, search_token_matches);
 
-            std::unordered_map<item_key_type, std::uint64_t> search_result_map {}; // item_key->search_score
+            std::unordered_map<item_key_type, std::uint64_t> search_result_map {}; // item_key -> search_score
             score_search_matches(search_tokens, search_token_matches, search_result_map);
             
             std::vector<scored_index> sorted_search_results = get_sorted_search_results(search_result_map); // Only needs item index and score
